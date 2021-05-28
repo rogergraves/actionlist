@@ -1,7 +1,8 @@
 class User < ApplicationRecord
+    include Slugable
     validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
-    validates :slug, presence: true, uniqueness: true
-    validate :slug_validation
+    # validates :slug, presence: true, uniqueness: true
+    # validate :slug_validation
 
     private
 
