@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+    validates :slug, uniqueness: true, allow_nil: true
     after_create :add_slug
 
     private
