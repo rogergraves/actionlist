@@ -22,5 +22,13 @@ RSpec.describe User, type: :model do
     user.email = "erjansndjansdja"
     expect(user).to_not be_valid
   end
+
+  it 'slug is unique' do
+    new_user = FactoryBot.create(:user)
+    expect(user).to be_valid
+   new_user.slug = user.slug
+   expect(new_user).to_not be_valid
+  end
 end
 
+  
