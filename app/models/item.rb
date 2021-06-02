@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :checklist
-  validates :description, uniqueness: { scope: :checklist_id }
-  validates :description, allow_blank: false
+
+  validates :description, presence: true, allow_blank: false, uniqueness: { scope: :checklist_id }
 end

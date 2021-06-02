@@ -14,12 +14,11 @@ RSpec.describe Checklist, type: :model do
     expect(new_checklist).to_not be_valid
   end
 
-  # it 'name exists' do
-  #   expect(checklist).to be_valid
-  #   checklist.name = nil
-  #   puts "!!!! #{checklist.ai}"
-  #   expect(checklist).to_not be_valid
-  # end
+  it 'name exists' do
+    expect(checklist).to be_valid
+    checklist.name = nil
+    expect(checklist).to_not be_valid
+  end
 
   it 'email_when_finished cannot be blank' do
     checklist.email_when_finished = be_nil
