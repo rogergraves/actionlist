@@ -17,7 +17,6 @@ RSpec.describe Checklist, type: :model do
   it 'name exists' do
     expect(checklist).to be_valid
     checklist.name = nil
-    puts "!!!! #{checklist.ai}"
     expect(checklist).to_not be_valid
   end
 
