@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
-
+gem 'activeadmin'
 gem 'amazing_print', '~> 1.3'       # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'bootsnap', '>= 1.4.4', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'devise', '~> 4.2'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '~> 1.1'                  # Use Puma as the app server
 gem 'puma', '~> 5.0'                # Use SCSS for stylesheets
