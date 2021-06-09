@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'checklists/:uri', to: 'checklists#show'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root to: "home#index"
