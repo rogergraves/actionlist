@@ -5,7 +5,20 @@ ActiveAdmin.register Checklist do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :call_to_action, :email_when_finished
+  permit_params :name, :call_to_action, :email_when_finished, :uri
+
+  show title: 'Checklists' do |checklist|
+    attributes_table do
+      row :name
+      row :call_to_action
+      row :email_when_finished
+      row :uri
+      row "URL for emails" do
+
+        "<input size = '50' type = 'text' value = '#{ENV['link_url']}/checklists/#{checklist.uri}' onClick='this.select();'>".html_safe
+      end
+    end
+  end
   #
   # or
   #
