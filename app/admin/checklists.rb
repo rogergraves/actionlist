@@ -17,6 +17,9 @@ ActiveAdmin.register Checklist do
 
         "<input size = '50' type = 'text' value = '#{ENV['link_url']}/checklists/#{checklist.uri}' onClick='this.select();'>".html_safe
       end
+      row "Items" do
+        checklist.items.map{|item| item.description }.join(', ')
+      end
     end
   end
   #
