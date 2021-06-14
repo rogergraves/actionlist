@@ -1,0 +1,17 @@
+<h1><%= @checklist&.name || "No Checklist Found" %></h1>
+   <p> Never gonna give you up </p>
+<% if @checklist.nil? && @checklists.any? %>
+   <p>Please select one of the existing checklists.</p>
+   <ul>
+      <% @checklists.each do |checklist| %> 
+        <li><%= link_to checklist.name, "#{ENV['link_url']}/checklists/#{checklist.uri}" %></li>
+      <% end %>
+   </ul>
+<% elsif @checklist.items.any? %>
+   <ul>
+    <% @checklist.items.each do |item| %>
+      <li><%= item.description %></li>
+    <% end %>
+   </ul>
+<% end %>
+   
