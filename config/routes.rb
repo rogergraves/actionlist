@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'welcome', to: 'welcome#index'
+  get 'welcome/show', to: 'welcome#show'
+  post 'welcome', to: 'welcome#create'
   get 'checklists/:uri', to: 'checklists#show'
   get 'checklists', to: 'checklists#show'
   devise_for :admin_users, ActiveAdmin::Devise.config
