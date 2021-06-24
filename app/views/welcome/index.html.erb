@@ -1,0 +1,6 @@
+<h1>Hello, please enter your email address to log in</h1>
+<%= form_for :welcome, url: "welcome", method: :post do |form| %>
+    <%= form.text_field :email %>
+    <%= form.submit  %>
+  <% end  %>
+<p> </p>
