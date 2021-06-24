@@ -1,2 +1,8 @@
-<h1>Welcome#show</h1>
-<p>Find me in app/views/welcome/show.html.erb</p>
+<h1>Welcome <%= @user.email %>!</h1>
+<p>Please pick one of the following checklists.</p>
+
+<ul>
+    <% @checklists.each do |checklist| %>
+       <li><%= link_to checklist.name, checklist_path(checklist.uri) %></li>
+    <% end %>
+</ul>
