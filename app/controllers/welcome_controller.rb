@@ -1,10 +1,10 @@
 class WelcomeController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
   def index
   end
 
   def show
-    @user = User.find_by(slug: session[:user])
-
     @checklists = Checklist.all
   end
 
@@ -18,5 +18,13 @@ class WelcomeController < ApplicationController
     else
       redirect_to welcome_path, flash: { alert: 'Email address not found' }
     end 
+  end
+
+  private
+  
+  def authenticate_user!
+    @user = User.find_by(slug: session[:user]) if session[:user]
+  
+    redirect_to welcome_path unless @user.present?
   end
 end
