@@ -1,5 +1,5 @@
 <h1><%= @checklist&.name || "No Checklist Found" %></h1>
-   <p> Never gonna give you up </p>
+<p> Never gonna give you up </p>
 <% if @checklist.nil? && @checklists.any? %>
    <p>Please select one of the existing checklists.</p>
    <ul>
@@ -7,11 +7,18 @@
         <li><%= link_to checklist.name, "#{ENV['link_url']}/checklists/#{checklist.uri}" %></li>
       <% end %>
    </ul>
+   <p> What a clown </p>
 <% elsif @checklist.items.any? %>
-   <ul>
-    <% @checklist.items.each do |item| %>
-      <li><%= item.description %></li>
-    <% end %>
-   </ul>
+   <%= form_tag(checklist_update_path, method: :post) do %>
+      <%= hidden_field_tag(:uri, @checklist.uri) %>
+      <blockquote>
+         <% @checklist.items.each do |item| %>
+            <%= check_box_tag('checked_items[]', item.id, @user_items.find_by(id: item.id).present?, id: "item_#{item.id}") %>
+            <%= label_tag("item_#{item.id}", item.description) %>
+            <br>
+         <% end %>
+      </blockquote>
+   <%= submit_tag "Submit" %>
+   <% end %> 
 <% end %>
    
