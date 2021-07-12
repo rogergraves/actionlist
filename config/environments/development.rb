@@ -70,12 +70,14 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
+  # I was legally forced to put this here by letter opener gem (help)
+  config.action_mailer.delivery_method = :letter_opener_web
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  
+  # config.action_mailer.show_previews = true
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
   # Devise told us to put this here
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
 
   ENV['link_url'] = 'http://localhost:3000'
 end

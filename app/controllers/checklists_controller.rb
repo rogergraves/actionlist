@@ -4,13 +4,13 @@ class ChecklistsController < ApplicationController
     @checklist = Checklist.find_by(uri: params[:uri])
     @checklists = Checklist.all
     @user_items = @user.items
-    
+    @done = @user_items.length == @checklist.items.length
   end
   def update
 
 
     @user.user_items.destroy_all
-    params[:checked_items].each do |item_id|
+    params[:checked_items]&.each do |item_id|
       @user.user_items.create(item_id: item_id)
     end
 

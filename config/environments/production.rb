@@ -26,7 +26,14 @@ Rails.application.configure do
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
+  
+# Enable preview mailers
+# Add the ENABLE_MAILER_PREVIEWS to your environment to enable.
+if ENV['ENABLE_MAILER_PREVIEWS'].present?
+  config.action_mailer.show_previews = true
 
+  # If you're using RSpec make sure to add the link changing where the previews path is.
+  config.action_mailer.preview_path ||= defined?(Rails.root) ? "#{Rails.root}/spec/mailers/previews" : nil
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
