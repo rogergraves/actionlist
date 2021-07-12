@@ -15,7 +15,9 @@ gem 'turbolinks', '~> 5'            # Build JSON APIs with ease. Read more: http
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]  # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'webpacker', '~> 5.0'           # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 
+
 group :development do
+  gem 'letter_opener_web', '~> 1.4'   # helps test mailer
   gem 'listen', '~> 3.3'              # Display performance information such as SQL time and flame graphs for each request in your browser.
   gem 'rack-mini-profiler', '~> 2.0'  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'spring'                        # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

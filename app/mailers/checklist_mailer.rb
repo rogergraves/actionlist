@@ -5,10 +5,15 @@ class ChecklistMailer < ApplicationMailer
   #
   #   en.checklist_mailer.checklist_done.subject
   #
-  def checklist_done(user, checklist)
-    mail({
-        to: checklist.email_when_finished, 
-        subject: "#{user.email} completed the #{checklist.name} checklist and won 50% off the next one!"
+  
+  def checklist_done(user: @user, checklist: @checklist)
+    # checklist.email_when_finished = "ryan.a.graves@icloud.com" if checklist.email_when_finished.nil?
+    mail ({
+        to: "ryan.a.graves@icloud.com", 
+        subject: "ryan completed the yes checklist and won 50% off the next one!"
     }) 
   end
 end
+
+
+ 

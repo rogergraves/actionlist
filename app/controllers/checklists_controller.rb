@@ -10,7 +10,7 @@ class ChecklistsController < ApplicationController
 
 
     @user.user_items.destroy_all
-    params[:checked_items].each do |item_id|
+    params[:checked_items]&.each do |item_id|
       @user.user_items.create(item_id: item_id)
     end
 

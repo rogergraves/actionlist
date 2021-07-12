@@ -1,3 +1,4 @@
+
 <h1><%= @checklist&.name || "No Checklist Found" %></h1>
 <p> Never gonna give you up </p>
 <% if @checklist.nil? && @checklists.any? %>
@@ -9,16 +10,16 @@
    </ul>
    <p> What a clown </p>
 <% elsif @checklist.items.any? %>
-   <%= form_tag(checklist_update_path, method: :post) do %>
+   <%= form_tag(checklist_update_path, method: :post, id: 'checklistform') do %>
       <%= hidden_field_tag(:uri, @checklist.uri) %>
       <blockquote>
          <% @checklist.items.each do |item| %>
-            <%= check_box_tag('checked_items[]', item.id, @user_items.find_by(id: item.id).present?, id: "item_#{item.id}") %>
+            <%= check_box_tag('checked_items[]', item.id, @user_items.find_by(id: item.id).present?, id: "item_#{item.id}", onclick: 'checklistform.submit()') %>
             <%= label_tag("item_#{item.id}", item.description) %>
             <br>
          <% end %>
       </blockquote>
-   <%= submit_tag "Submit" %>
+   
    <% end %> 
    <p>Done: <%= @done %></p>
 <% end %>
