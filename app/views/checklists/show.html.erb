@@ -1,26 +1,28 @@
-
-<h1><%= @checklist&.name || "No Checklist Found" %></h1>
-<p> Never gonna give you up </p>
-<% if @checklist.nil? && @checklists.any? %>
-   <p>Please select one of the existing checklists.</p>
-   <ul>
-      <% @checklists.each do |checklist| %> 
-        <li><%= link_to checklist.name, "#{ENV['link_url']}/checklists/#{checklist.uri}" %></li>
-      <% end %>
-   </ul>
-   <p> What a clown </p>
-<% elsif @checklist.items.any? %>
-   <%= form_tag(checklist_update_path, method: :post, id: 'checklistform') do %>
-      <%= hidden_field_tag(:uri, @checklist.uri) %>
-      <blockquote>
-         <% @checklist.items.each do |item| %>
-            <%= check_box_tag('checked_items[]', item.id, @user_items.find_by(id: item.id).present?, id: "item_#{item.id}", onclick: 'checklistform.submit()') %>
-            <%= label_tag("item_#{item.id}", item.description) %>
-            <br>
+<div class="text-center">
+   <div class="">
+      <%= link_to "Back", welcome_show_path  %>
+   </div>
+   <h1><%= @checklist&.name || "No Checklist Found" %></h1>
+   <% if @checklist.nil? && @checklists.any? %>
+      <p>Please select one of the existing checklists.</p>
+      <ul>
+         <% @checklists.each do |checklist| %> 
+         <li><%= link_to checklist.name, "#{ENV['link_url']}/checklists/#{checklist.uri}" %></li>
          <% end %>
-      </blockquote>
+      </ul>
+   <% elsif @checklist.items.any? %>
    
-   <% end %> 
-   <p>Done: <%= @done %></p>
-<% end %>
+      <%= form_tag(checklist_update_path, method: :post, id: 'checklistform') do %>
+         <%= hidden_field_tag(:uri, @checklist.uri) %>
    
+            <div class="mx-auto mt-2 mb-2 text-left" style="display: inline-block">
+               <% @checklist.items.each do |item| %>
+                  <%= check_box_tag('checked_items[]', item.id, @user_items.find_by(item_id: item.id, checked: true).present?, id: "item_#{item.id}", onclick: 'checklistform.submit()') %>
+                  <%= label_tag("item_#{item.id}", item.description) %>
+                  <br>
+               <% end %>
+            </div>
+      <% end %> 
+      <p>Done: <%= @done %></p>
+   <% end %>
+</div>
